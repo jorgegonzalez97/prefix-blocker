@@ -1,0 +1,16 @@
+// Signing and identifiers shared by the app and its 64 extensions.
+//
+// Don't edit this file to build under your own account. Copy
+// Local.xcconfig.example to Local.xcconfig (which git ignores) and set your
+// values there; they override the placeholders below.
+
+// Apple Developer Team ID (Xcode › Settings › Accounts, or developer.apple.com › Membership).
+DEVELOPMENT_TEAM =
+
+// App bundle identifier. The extensions are <this>.shard01 … <this>.shard64.
+BASE_BUNDLE_ID = com.example.prefixblocker
+
+// App Group shared by the app and its extensions. Must start with "group.".
+APP_GROUP_ID = group.com.example.prefixblocker
+
+#include? "Local.xcconfig"

@@ -1,0 +1,6 @@
+// Copy this file to Local.xcconfig and fill in your own values.
+// Local.xcconfig is ignored by git, so your identifiers stay on your machine.
+
+DEVELOPMENT_TEAM = ABCDE12345
+BASE_BUNDLE_ID = com.yourname.prefixblocker
+APP_GROUP_ID = group.com.yourname.prefixblocker

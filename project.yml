@@ -1,0 +1,410 @@
+# XcodeGen project (https://github.com/yonaskolb/XcodeGen)
+#   brew install xcodegen
+#   xcodegen generate
+#   open PrefixBlocker.xcodeproj
+#
+# The developer team, bundle identifier and App Group come from
+# Config/Signing.xcconfig. To build under your own account, copy
+# Config/Local.xcconfig.example to Config/Local.xcconfig and set them there.
+
+name: PrefixBlocker
+
+configFiles:
+  Debug: Config/Signing.xcconfig
+  Release: Config/Signing.xcconfig
+
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+settings:
+  base:
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.1"
+    CURRENT_PROJECT_VERSION: "2"
+    TARGETED_DEVICE_FAMILY: "1"
+
+# One Call Directory extension per slot. They share all their code; only the
+# slot index differs. Their number must match AppConstants.slotCount.
+targetTemplates:
+  Shard:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Extension
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BASE_BUNDLE_ID).shard${slotLabel}
+        SLOT_INDEX: ${slotIndex}
+        SLOT_LABEL: ${slotLabel}
+        INFOPLIST_FILE: Extension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Extension/Shard.entitlements
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+
+targets:
+  PrefixBlocker:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Core
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BASE_BUNDLE_ID)
+        INFOPLIST_FILE: App/Info.plist
+        CODE_SIGN_ENTITLEMENTS: App/PrefixBlocker.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    dependencies:
+      - target: Shard01
+        embed: true
+      - target: Shard02
+        embed: true
+      - target: Shard03
+        embed: true
+      - target: Shard04
+        embed: true
+      - target: Shard05
+        embed: true
+      - target: Shard06
+        embed: true
+      - target: Shard07
+        embed: true
+      - target: Shard08
+        embed: true
+      - target: Shard09
+        embed: true
+      - target: Shard10
+        embed: true
+      - target: Shard11
+        embed: true
+      - target: Shard12
+        embed: true
+      - target: Shard13
+        embed: true
+      - target: Shard14
+        embed: true
+      - target: Shard15
+        embed: true
+      - target: Shard16
+        embed: true
+      - target: Shard17
+        embed: true
+      - target: Shard18
+        embed: true
+      - target: Shard19
+        embed: true
+      - target: Shard20
+        embed: true
+      - target: Shard21
+        embed: true
+      - target: Shard22
+        embed: true
+      - target: Shard23
+        embed: true
+      - target: Shard24
+        embed: true
+      - target: Shard25
+        embed: true
+      - target: Shard26
+        embed: true
+      - target: Shard27
+        embed: true
+      - target: Shard28
+        embed: true
+      - target: Shard29
+        embed: true
+      - target: Shard30
+        embed: true
+      - target: Shard31
+        embed: true
+      - target: Shard32
+        embed: true
+      - target: Shard33
+        embed: true
+      - target: Shard34
+        embed: true
+      - target: Shard35
+        embed: true
+      - target: Shard36
+        embed: true
+      - target: Shard37
+        embed: true
+      - target: Shard38
+        embed: true
+      - target: Shard39
+        embed: true
+      - target: Shard40
+        embed: true
+      - target: Shard41
+        embed: true
+      - target: Shard42
+        embed: true
+      - target: Shard43
+        embed: true
+      - target: Shard44
+        embed: true
+      - target: Shard45
+        embed: true
+      - target: Shard46
+        embed: true
+      - target: Shard47
+        embed: true
+      - target: Shard48
+        embed: true
+      - target: Shard49
+        embed: true
+      - target: Shard50
+        embed: true
+      - target: Shard51
+        embed: true
+      - target: Shard52
+        embed: true
+      - target: Shard53
+        embed: true
+      - target: Shard54
+        embed: true
+      - target: Shard55
+        embed: true
+      - target: Shard56
+        embed: true
+      - target: Shard57
+        embed: true
+      - target: Shard58
+        embed: true
+      - target: Shard59
+        embed: true
+      - target: Shard60
+        embed: true
+      - target: Shard61
+        embed: true
+      - target: Shard62
+        embed: true
+      - target: Shard63
+        embed: true
+      - target: Shard64
+        embed: true
+
+  PrefixBlockerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+      - Core
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(BASE_BUNDLE_ID).tests
+        GENERATE_INFOPLIST_FILE: YES
+
+  Shard01:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "0", slotLabel: "01"}
+  Shard02:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "1", slotLabel: "02"}
+  Shard03:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "2", slotLabel: "03"}
+  Shard04:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "3", slotLabel: "04"}
+  Shard05:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "4", slotLabel: "05"}
+  Shard06:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "5", slotLabel: "06"}
+  Shard07:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "6", slotLabel: "07"}
+  Shard08:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "7", slotLabel: "08"}
+  Shard09:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "8", slotLabel: "09"}
+  Shard10:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "9", slotLabel: "10"}
+  Shard11:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "10", slotLabel: "11"}
+  Shard12:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "11", slotLabel: "12"}
+  Shard13:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "12", slotLabel: "13"}
+  Shard14:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "13", slotLabel: "14"}
+  Shard15:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "14", slotLabel: "15"}
+  Shard16:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "15", slotLabel: "16"}
+  Shard17:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "16", slotLabel: "17"}
+  Shard18:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "17", slotLabel: "18"}
+  Shard19:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "18", slotLabel: "19"}
+  Shard20:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "19", slotLabel: "20"}
+  Shard21:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "20", slotLabel: "21"}
+  Shard22:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "21", slotLabel: "22"}
+  Shard23:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "22", slotLabel: "23"}
+  Shard24:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "23", slotLabel: "24"}
+  Shard25:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "24", slotLabel: "25"}
+  Shard26:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "25", slotLabel: "26"}
+  Shard27:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "26", slotLabel: "27"}
+  Shard28:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "27", slotLabel: "28"}
+  Shard29:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "28", slotLabel: "29"}
+  Shard30:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "29", slotLabel: "30"}
+  Shard31:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "30", slotLabel: "31"}
+  Shard32:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "31", slotLabel: "32"}
+  Shard33:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "32", slotLabel: "33"}
+  Shard34:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "33", slotLabel: "34"}
+  Shard35:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "34", slotLabel: "35"}
+  Shard36:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "35", slotLabel: "36"}
+  Shard37:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "36", slotLabel: "37"}
+  Shard38:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "37", slotLabel: "38"}
+  Shard39:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "38", slotLabel: "39"}
+  Shard40:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "39", slotLabel: "40"}
+  Shard41:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "40", slotLabel: "41"}
+  Shard42:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "41", slotLabel: "42"}
+  Shard43:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "42", slotLabel: "43"}
+  Shard44:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "43", slotLabel: "44"}
+  Shard45:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "44", slotLabel: "45"}
+  Shard46:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "45", slotLabel: "46"}
+  Shard47:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "46", slotLabel: "47"}
+  Shard48:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "47", slotLabel: "48"}
+  Shard49:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "48", slotLabel: "49"}
+  Shard50:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "49", slotLabel: "50"}
+  Shard51:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "50", slotLabel: "51"}
+  Shard52:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "51", slotLabel: "52"}
+  Shard53:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "52", slotLabel: "53"}
+  Shard54:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "53", slotLabel: "54"}
+  Shard55:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "54", slotLabel: "55"}
+  Shard56:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "55", slotLabel: "56"}
+  Shard57:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "56", slotLabel: "57"}
+  Shard58:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "57", slotLabel: "58"}
+  Shard59:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "58", slotLabel: "59"}
+  Shard60:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "59", slotLabel: "60"}
+  Shard61:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "60", slotLabel: "61"}
+  Shard62:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "61", slotLabel: "62"}
+  Shard63:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "62", slotLabel: "63"}
+  Shard64:
+    templates: [Shard]
+    templateAttributes: {slotIndex: "63", slotLabel: "64"}
+
+schemes:
+  PrefixBlocker:
+    build:
+      targets:
+        PrefixBlocker: all
+        PrefixBlockerTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - PrefixBlockerTests
